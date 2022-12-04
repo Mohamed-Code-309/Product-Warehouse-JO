@@ -23,10 +23,10 @@ app.use(express.json());
 const { authUser } = require('./middleware/auth');
 
 //Routes...
-app.use("/api/v1/products", require('./routes/productRoutes'));
-app.use("/api/v1/customers", require('./routes/customerRoutes'));
+app.use("/api/v1/products", authUser, require('./routes/productRoutes'));
+app.use("/api/v1/customers", authUser, require('./routes/customerRoutes'));
+app.use("/api/v1/warehouses", authUser, require('./routes/warehouseRoutes'));
 app.use("/api/v1/users", require('./routes/userRoutes'));
-app.use("/api/v1/warehouses", require('./routes/warehouseRoutes'));
 
 
 const PORT = process.env.PORT || 3000;
